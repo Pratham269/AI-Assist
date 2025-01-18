@@ -1,10 +1,14 @@
-import os 
 import eel
+import os
+
 from Engine.feature import *
-eel.init("WWW ")
+from Engine.command import *
+
+
+eel.init("WWW")
 
 playAssistantSound()
 
-os.system('start msedge.exe --app="http://127.0.0.1:5500/WWW/indiax.html"')
+os.system('start msedge.exe --app="http://localhost:8000/index.html"')
 
 eel.start('index.html', mode=None, host='localhost', block=True)
