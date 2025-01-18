@@ -1,14 +1,15 @@
 import pyttsx3
 import speech_recognition as sr
 import eel
+import time
 
 
 def speak(text):
     engine = pyttsx3.init('sapi5')
     voices = engine.getProperty('voices') 
     engine.setProperty('voice', voices[1].id)
-    engine.setProperty('rate', 159)
-    print(voices)
+    engine.setProperty('rate', 174)
+    eel.DisplayMessage(text)
     engine.say(text)
     engine.runAndWait()
 
@@ -30,11 +31,27 @@ def takecommand():
         query = r.recognize_google(audio, language='en-in')
         print(f"user said: {query}")
         eel.DisplayMessage(query)
-        speak(query)
-        eel.ShowHood()
+        time.sleep(2)
+        
         
 
     except Exception as e:
         return ""
     
     return query.lower()
+
+@eel.expose
+def allCommands():
+    query  = takecommand()
+    print(query)
+    if "open" in query:
+        from Engine.feature import openCommand
+        openCommand(query)
+
+    elif "on youtube":
+        from Engine.feature import PlayYoutube
+        PlayYoutube(query)
+    else:
+        print("not run ")
+    
+    eel.ShowHood()
