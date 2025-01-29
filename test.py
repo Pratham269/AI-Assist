@@ -3,9 +3,7 @@ import time
 import pvporcupine
 import pyaudio
 
-#gig status
-#git add .
-#git commit -m "comment"
+
 
 def hotword():
     porcupine=None
@@ -46,3 +44,7 @@ def hotword():
             paud.terminate()
 
 hotword()
+#gig status
+#git add .
+#git commit -m "comment"
+#git push origin main 
