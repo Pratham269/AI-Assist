@@ -1,6 +1,6 @@
 import os
-import re
 import sqlite3
+import struct
 import time
 import webbrowser
 import eel
@@ -62,6 +62,7 @@ def PlayYoutube(query):
     search_term = extract_yt_term(query)
     speak("Playing "+search_term+" on YouTube")
     kit.playonyt(search_term)
+    eel.ShowHood()
 
 def hotword():
     porcupine=None

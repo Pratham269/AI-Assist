@@ -31,6 +31,7 @@ def takecommand():
         query = r.recognize_google(audio, language='en-in')
         print(f"user said: {query}")
         eel.DisplayMessage(query)
+        eel.ShowHood()
         time.sleep(2)
         
         
@@ -58,5 +59,4 @@ def allCommands():
             print("not run ")
     except:
         print("error ")
-        
         eel.ShowHood()
