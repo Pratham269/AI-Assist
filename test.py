@@ -4,7 +4,6 @@ import pvporcupine
 import pyaudio
 
 
-
 def hotword():
     porcupine=None
     paud=None
@@ -23,8 +22,8 @@ def hotword():
 
             # processing keyword comes from mic 
             keyword_index=porcupine.process(keyword)
-
-            # checking first keyword detetcted for not
+ 
+            # checking first keyword detetcted for not 
             if keyword_index>=0:
                 print("hotword detected")
 
@@ -42,9 +41,4 @@ def hotword():
             audio_stream.close()
         if paud is not None:
             paud.terminate()
-
 hotword()
-#gig status
-#git add .
-#git commit -m "comment"
-#git push origin main 
