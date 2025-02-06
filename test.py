@@ -42,3 +42,4 @@ def hotword():
         if paud is not None:
             paud.terminate()
 hotword()
+####
