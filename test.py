@@ -10,17 +10,17 @@ def hotword():
     audio_stream=None
     try:
        
-          
+        # pre trained keywords    
         porcupine=pvporcupine.create(keywords=["jarvis","alexa"]) 
         paud=pyaudio.PyAudio()
         audio_stream=paud.open(rate=porcupine.sample_rate,channels=1,format=pyaudio.paInt16,input=True,frames_per_buffer=porcupine.frame_length)
         
-        
+        # loop for streaming
         while True:
             keyword=audio_stream.read(porcupine.frame_length)
             keyword=struct.unpack_from("h"*porcupine.frame_length,keyword)
 
-            
+            # processing keyword comes from mic 
             keyword_index=porcupine.process(keyword)
  
             # checking first keyword detetcted for not 
