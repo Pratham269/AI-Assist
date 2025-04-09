@@ -25,7 +25,7 @@ cursor = con.cursor()
 # Create a table with the desired columns
 cursor.execute('''CREATE TABLE IF NOT EXISTS contacts (id integer primary key, name VARCHAR(200), mobile_no VARCHAR(255), email VARCHAR(255) NULL)''')
 
-desired_columns_indices = [0, 18]
+desired_columns_indices = [0,3]
 
 # Read data from CSV and insert into SQLite table for the desired columns
 with open('contacts.csv', 'r', encoding='utf-8') as csvfile:

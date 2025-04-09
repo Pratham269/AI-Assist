@@ -1,4 +1,5 @@
 import os
+from shlex import quote
 import sqlite3
 import struct
 import subprocess
@@ -13,6 +14,7 @@ from playsound import playsound
 from Engine.command import speak
 from Engine.config import ASSISTANT_NAME
 from Engine.helper import extract_yt_term, remove_words
+import pygetwindow as gw
 
 con = sqlite3.connect("AI.db")
 cursor = con.cursor()
@@ -124,6 +126,15 @@ def findContact(query):
         speak('not exist in contacts')
         return 0, 0
 
+
+def focus_whatsapp_window():
+    try:
+        win = gw.getWindowsWithTitle("WhatsApp")[0]
+        win.activate()
+        time.sleep(1)
+    except IndexError:
+        speak("WhatsApp window not found.")
+    
 def whatsApp(mobile_no, message, flag, name):
 
     if flag == 'message':
@@ -151,13 +162,17 @@ def whatsApp(mobile_no, message, flag, name):
 
     # Open WhatsApp with the constructed URL using cmd.exe
     subprocess.run(full_command, shell=True)
-    time.sleep(5)
+    time.sleep(4)
     subprocess.run(full_command, shell=True)
+    time.sleep(4)
     
+    focus_whatsapp_window()
     pyautogui.hotkey('ctrl', 'f')
+    time.sleep(1)
 
     for i in range(1, target_tab):
         pyautogui.hotkey('tab')
+        time.sleep(0.2)
 
     pyautogui.hotkey('enter')
     speak(jarvis_message)
