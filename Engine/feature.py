@@ -15,6 +15,7 @@ from Engine.command import speak
 from Engine.config import ASSISTANT_NAME
 from Engine.helper import extract_yt_term, remove_words
 import pygetwindow as gw
+from hugchat import hugchat
 
 con = sqlite3.connect("AI.db")
 cursor = con.cursor()
@@ -35,8 +36,7 @@ def openCommand(query):
     if app_name != "":
 
         try:
-            cursor.execute(
-                'SELECT path FROM sys_command WHERE name IN (?)', (app_name,))
+            cursor.execute('SELECT path FROM sys_command WHERE name IN (?)', (app_name,))
             results = cursor.fetchall()
 
             if len(results) != 0:
@@ -44,8 +44,7 @@ def openCommand(query):
                 os.startfile(results[0][0])
 
             elif len(results) == 0: 
-                cursor.execute(
-                'SELECT url FROM web_command WHERE name IN (?)', (app_name,))
+                cursor.execute('SELECT url FROM web_command WHERE name IN (?)', (app_name,))
                 results = cursor.fetchall()
                 
                 if len(results) != 0:
@@ -176,3 +175,14 @@ def whatsApp(mobile_no, message, flag, name):
 
     pyautogui.hotkey('enter')
     speak(jarvis_message)
+
+
+def chatBot(query):
+    user_input = query.lower()
+    chatbot = hugchat.ChatBot(cookie_path="Engine\cookies.json")
+    id = chatbot.new_conversation()
+    chatbot.change_conversation(id)
+    response =  chatbot.chat(user_input)
+    print(response)
+    speak(response)
+    return response

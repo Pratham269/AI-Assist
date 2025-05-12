@@ -17,8 +17,7 @@ $(document).ready(function () {
         $("#Oval").attr("hidden", false);
         $("#SiriWave").attr("hidden", true);
     }
-    
-    
+
     eel.expose(senderText)
     function senderText(message) {
         var chatBox = document.getElementById("chat-canvas-body");

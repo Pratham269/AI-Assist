@@ -5,6 +5,7 @@ import time
 
 
 def speak(text):
+    text = str(text)
     engine = pyttsx3.init('sapi5')
     voices = engine.getProperty('voices') 
     engine.setProperty('voice', voices[1].id)
@@ -32,7 +33,6 @@ def takecommand():
         query = r.recognize_google(audio, language='en-in')
         print(f"user said: {query}")
         eel.DisplayMessage(query)
-        eel.ShowHood()
         time.sleep(2)
         
         
@@ -71,6 +71,7 @@ def allCommands(message=1):
                 if "send message" in query:
                     flag = 'message'
                     speak("what message to send")
+                    print("what message to send")
                     query = takecommand()
                     
                 elif "phone call" in query:
@@ -80,7 +81,8 @@ def allCommands(message=1):
                     
                 whatsApp(contact_no, query, flag, name)
         else:
-            print("not run ")
+            from Engine.feature import chatBot
+            chatBot(query)
     except:
         print("error ")
         
