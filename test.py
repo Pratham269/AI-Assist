@@ -42,3 +42,7 @@ def hotword():
         if paud is not None:
             paud.terminate()
 hotword()
+
+#adb shell am start -a android.intent.action.CALL -d tel:+917038344548
+#adb shell input tap 100 1434
+#adb shell input text "win"
