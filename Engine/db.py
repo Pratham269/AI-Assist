@@ -7,9 +7,9 @@ cursor = con.cursor()
 # query = "CREATE TABLE IF NOT EXISTS sys_command(id integer primary key, name VARCHAR(100), path VARCHAR(1000))"
 # cursor.execute(query)
 
-query = "INSERT INTO sys_command VALUES (null,'Word', 'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Word.exe')"
-cursor.execute(query)
-con.commit()
+# query = "INSERT INTO sys_command VALUES (null,'Word', 'C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Word.exe')"
+# cursor.execute(query)
+# con.commit()
 
 
 #query = "CREATE TABLE IF NOT EXISTS web_command(id integer primary key, name VARCHAR(100), url VARCHAR(1000))"
@@ -41,7 +41,13 @@ con.commit()
 
 # #### 4. Insert Single contacts (Optional)
 
-# query = "INSERT INTO contacts VALUES (null,'pawan', '1234567890')"
+query = "INSERT INTO contacts VALUES (null,'Vaishnavi', '+917038344548',null)"
+cursor.execute(query)
+con.commit()
+
+#delete a single row
+
+# query = "DELETE FROM contacts WHERE id = 2;"
 # cursor.execute(query)
 # con.commit()
 

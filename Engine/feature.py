@@ -118,7 +118,7 @@ def findContact(query):
         print(results[0][0])
         mobile_number_str = str(results[0][0])
         if not mobile_number_str.startswith('+91'):
-            mobile_number_str = '+91' + mobile_number_str
+            mobile_number_str = '+91'+mobile_number_str
 
         return mobile_number_str, query
     except:
@@ -176,7 +176,7 @@ def whatsApp(mobile_no, message, flag, name):
     pyautogui.hotkey('enter')
     speak(jarvis_message)
 
-
+#chat bot
 def chatBot(query):
     user_input = query.lower()
     chatbot = hugchat.ChatBot(cookie_path="Engine\cookies.json")
@@ -186,3 +186,36 @@ def chatBot(query):
     print(response)
     speak(response)
     return response
+
+#Android Automation
+def makeCall(name, mobileNo):
+    mobileNo =mobileNo.replace(" ", "")
+    speak("Calling "+name)
+    command = 'adb shell am start -a android.intent.action.CALL -d tel:'+mobileNo
+    os.system(command)
+
+
+# to send message
+def sendMessage(message, mobileNo, name):
+    from Engine.helper import replace_spaces_with_percent_s, goback, keyEvent, tapEvents, adbInput
+    message = replace_spaces_with_percent_s(message)
+    mobileNo = replace_spaces_with_percent_s(mobileNo)
+    speak("sending message")
+    goback(4)
+    time.sleep(1)
+    keyEvent(3)
+    # open sms app
+    tapEvents(261, 1459)
+    #start chat
+    tapEvents(350, 230)
+    # search mobile no
+    adbInput(mobileNo)
+    #tap on name
+    tapEvents(180, 250)
+    # tap on input
+    tapEvents(200, 983)
+    #message
+    adbInput(message)
+    #send
+    tapEvents(650, 990)
+    speak("message send successfully to "+name)
