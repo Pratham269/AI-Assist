@@ -10,8 +10,8 @@ def AuthenticateFace():
     flag = ""
     # Local Binary Patterns Histograms
     recognizer = cv2.face.LBPHFaceRecognizer_create()
-    recognizer.read('Engine\\auth\\trainer\\trainer.yml')  # load trained model
-    cascadePath = "Engine\\auth\\haarcascade_frontalface_default.xml"
+    recognizer.read('engine\\auth\\trainer\\trainer.yml')  # load trained model
+    cascadePath = "engine\\auth\\haarcascade_frontalface_default.xml"
     # initializing haar cascade for object detection approach
     faceCascade = cv2.CascadeClassifier(cascadePath)
 
@@ -84,3 +84,4 @@ def AuthenticateFace():
     cam.release()
     cv2.destroyAllWindows()
     return flag
+ 
